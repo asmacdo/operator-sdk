@@ -3,7 +3,7 @@
 Owner references are automatically injected *only during creation of
 resources*. Enabling owner reference injection *will not update objects*
 created while [owner reference injection is
-disabled](https://github.com/operator-framework/operator-sdk/blob/master/doc/ansible/dev/advanced_options.md#turning-off-dependent-watches-and-owner-reference-injection)
+disabled](./advanced_options.md#turning-off-dependent-watches-and-owner-reference-injection)
 .
 
 This guide will demonstrate how to retroactively set owner references
