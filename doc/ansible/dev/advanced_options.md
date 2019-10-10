@@ -50,3 +50,7 @@ You may want to manage what your operator watches and the owner references. This
 ```
 ENTRYPOINT ["/usr/local/bin/entrypoint", "--inject-owner-ref=false"]
 ```
+
+If you have created resources without owner reference injection, it is
+possible to manually to update resources following [this
+guide.](https://github.com/operator-framework/operator-sdk/blob/master/doc/ansible/dev/retroactively-owned-resources.md)
