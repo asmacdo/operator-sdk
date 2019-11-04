@@ -1,4 +1,7 @@
-# Adding Owner References for Existing Resources
+---
+title: Adding Owner References for Existing Resources
+linkTitle: Manual Owner References
+---
 
 Owner references are automatically injected `only during creation of
 resources`. Enabling owner reference injection `will not update objects`
@@ -61,7 +64,7 @@ resource is a cluster level resource.
   * operator-sdk/primary-resource-type: {kind}.{group}
 
 **NOTE**: The {group} can be found by splitting the `apiVersion`
-metadata of the CR, into `group` and `version`. As an example, 
+metadata of the CR, into `group` and `version`. As an example,
 [this apiVersion field](https://github.com/operator-framework/operator-sdk-samples/blob/master/ansible/memcached-operator/deploy/crds/cache_v1alpha1_memcached_cr.yaml#L1)
 gives us the group `cache.example.com`.
 
@@ -75,7 +78,7 @@ metadata:
     operator-sdk/primary-resource-type: Memcached.cache.example.com
 ```
 
-## Migration using Ansible assets 
+## Migration using Ansible assets
 
 If you have many resources to update, it may be easier to use the
 following Ansible assets, which **should be considered an example rather

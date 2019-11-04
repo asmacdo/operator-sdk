@@ -1,4 +1,7 @@
-# Ansible Developer Guide for Operator SDK
+---
+title: Ansible Developer Guide for Operator SDK
+linkTitle: Developer Guide
+---
 
 This document provides some useful information and tips for a developer
 creating an operator powered by Ansible.

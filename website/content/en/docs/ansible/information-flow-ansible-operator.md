@@ -1,5 +1,10 @@
-# Information Flow for Operator SDK Ansible-based Operators
+---
+title: Information Flow for Operator SDK Ansible-based Operators
+linkTitle: Information Flow
+weight: 20
+---
 
+TODO(asmacdo) this image should show
 ![Ansible Operator Flow](ao-flow.png)
 
 ### Controller/Reconciler

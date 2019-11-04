@@ -1,4 +1,8 @@
-# Ansible User Guide for Operator SDK
+---
+title: Ansible User Guide for Operator SDK
+linkTitle: User Guide
+weight: 5
+---
 
 This guide walks through an example of building a simple memcached-operator powered by Ansible using tools and libraries provided by the Operator SDK.
 

@@ -1,4 +1,7 @@
-# Handling Deletion Events with Operator SDK Ansible-based Operators
+---
+title: Handling Deletion Events with Operator SDK Ansible-based Operators
+linkTitle: Finalizers
+---
 
 The default behavior of an Ansible Operator is to delete all resources the operator
 created during reconciliation when a managed resource is marked for deletion. This

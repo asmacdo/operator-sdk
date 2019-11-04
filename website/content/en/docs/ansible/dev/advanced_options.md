@@ -1,4 +1,7 @@
-# Advanced Options for Operator SDK Ansible-based Operators
+---
+title: Advanced Options for Operator SDK Ansible-based Operators
+linkTitle: Advanced Options
+---
 
 This document shows the advanced options available to a developer of an ansible operator.
 
