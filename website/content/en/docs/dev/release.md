@@ -1,4 +1,7 @@
-# Operator SDK Release guide
+---
+title: Operator SDK Release guide
+linkTitle: Release Guide
+---
 
 Making an Operator SDK release involves:
 
