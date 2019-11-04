@@ -1,4 +1,7 @@
-# Using the Controller Runtime Client API with Operator SDK
+---
+title: Using the Controller Runtime Client API with Operator SDK
+linkTitle: Controller Runtime Client API
+---
 
 ## Overview
 

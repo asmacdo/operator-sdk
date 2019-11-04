@@ -1,4 +1,7 @@
-# Generating a Cluster Service Version (CSV) with Operator SDK
+---
+title: Generating a Cluster Service Version (CSV) with Operator SDK
+linkTitle: Generating a CSV
+---
 
 This document describes how to manage the following lifecycle for your Operator using the SDK's [`operator-sdk olm-catalog gen-csv`][doc-gen-csv] command:
 
