@@ -4,7 +4,6 @@ linkTitle: Information Flow
 weight: 20
 ---
 
-TODO(asmacdo) this image should show
 ![Ansible Operator Flow](ao-flow.png)
 
 ### Controller/Reconciler
