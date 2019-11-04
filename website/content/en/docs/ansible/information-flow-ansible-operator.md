@@ -4,7 +4,7 @@ linkTitle: Information Flow
 weight: 20
 ---
 
-![Ansible Operator Flow](ao-flow.png)
+![Ansible Operator Flow](/ao-flow.png)
 
 ### Controller/Reconciler
  * Gets the primary resource based on NamespacedName this uses the cache from controller runtime.
