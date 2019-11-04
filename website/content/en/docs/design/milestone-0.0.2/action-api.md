@@ -1,4 +1,7 @@
-# Operator-SDK Action API Design Doc
+---
+title: Operator-SDK Action API Design Doc
+linkTitle: Action API
+---
 
 ## Goal
 

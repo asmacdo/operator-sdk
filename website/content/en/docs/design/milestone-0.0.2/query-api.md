@@ -1,4 +1,7 @@
-# Operator-SDK Query API Design Doc
+---
+title: Operator-SDK Query API Design Doc
+linkTitle: Query API
+---
 
 ## Goal
 

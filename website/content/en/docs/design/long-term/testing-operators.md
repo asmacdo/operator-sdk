@@ -1,4 +1,7 @@
-## Make testing an Operator simple and easy
+---
+title: Make testing an Operator simple and easy
+linkTitle: Easy Testing
+---
 
 **Goal:** Make local development of Operators easy, so software vendors can produce high quality software.
 Make functional tests easy to integrate into a big matrix (upstream, OpenShift, GKE, etc) since we want the SDK to work equally well on all platforms.

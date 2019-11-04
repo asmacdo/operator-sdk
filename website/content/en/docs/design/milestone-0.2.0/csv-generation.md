@@ -1,4 +1,7 @@
-# Operator-SDK CSV generation Design Doc
+---
+title: Operator-SDK CSV generation Design Doc
+linkTitle: CSV Generation
+---
 
 ## Goal
 

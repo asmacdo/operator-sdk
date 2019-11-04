@@ -1,4 +1,6 @@
-## Simple Operator Extensions
+---
+title: Simple Operator Extensions
+---
 
 **Goal:** ISVs choose the Operator SDK to ship their apps because it provides OOTB extensions for common enterprise asks, like audit logging, handling TLS, monitoring, etc. The SDK provides these capabilities as libraries that can be easily inserted into your business logic where it makes sense.
 

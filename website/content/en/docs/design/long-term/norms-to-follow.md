@@ -1,4 +1,7 @@
-## SDK examples/docs show API norms authors should follow
+---
+title: SDK examples/docs show API norms authors should follow
+linkTitle: Best Practices
+---
 
 **Goal:** Help Operator authors avoid common mistakes and usability issues that the community has learned through the various operators in use today.
 
