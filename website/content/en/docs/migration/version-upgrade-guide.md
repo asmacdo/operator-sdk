@@ -1,4 +1,7 @@
-# Operator SDK Version upgrade guide
+---
+title: Operator SDK Version upgrade guide
+linkTitle: Upgrade Guide
+---
 
 This document aims to facilitate the process of upgrading the Operator SDK version for an existing operator project.
 
