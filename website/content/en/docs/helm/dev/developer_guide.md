@@ -1,4 +1,7 @@
-# Helm Developer guide for Operator SDK
+---
+title: Helm Developer guide for Operator SDK
+linkTitle: Developer Guide
+---
 
 This document provides some useful information and tips for a developer
 creating an operator powered by Helm.

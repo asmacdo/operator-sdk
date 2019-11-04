@@ -1,4 +1,7 @@
-# Helm User Guide for Operator SDK
+---
+title: Helm User Guide for Operator SDK
+linkTitle: User Guide
+---
 
 This guide walks through an example of building a simple nginx-operator powered by Helm using tools and libraries provided by the Operator SDK.
 
