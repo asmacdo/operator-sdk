@@ -1,4 +1,7 @@
-# Leader for Life Proposal for Operator SDK
+---
+title: Leader for Life Proposal for Operator SDK
+linkTitle: Leader for Life
+---
 
 Implementation Owner:
 

@@ -16,6 +16,7 @@ status: implementable
 see-also:
   - "./cli-ux-phase1.md"  
 ---
+TODO(asmacdo) How should we deal with the proposal frontmatter?
 
 # sdk integration with olm
 

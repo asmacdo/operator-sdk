@@ -1,4 +1,7 @@
-# Helm based-Operator Proposal for Operator SDK
+---
+title: Helm based-Operator Proposal for Operator SDK
+linkTitle: Helm Operator
+---
 
 > Status: **implemented**
 > 

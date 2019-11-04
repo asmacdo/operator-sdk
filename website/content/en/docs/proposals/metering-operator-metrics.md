@@ -1,4 +1,7 @@
-# Auto register operator specific metrics as part of operator-metering Proposal for Operator SDK
+---
+title: Auto register operator specific metrics as part of operator-metering Proposal for Operator SDK
+linkTitle: Auto register metrics
+---
 
 Implementation Owner:
 

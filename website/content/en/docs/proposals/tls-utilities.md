@@ -1,4 +1,7 @@
-# TLS Utilities Proposal for Operator SDK
+---
+title: TLS Utilities Proposal for Operator SDK
+linkTitle: TLS Utilities
+---
 
 Implementation Owner:
 

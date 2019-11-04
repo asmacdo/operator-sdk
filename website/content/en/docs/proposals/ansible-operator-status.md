@@ -1,4 +1,7 @@
-# Ansible-based Operator Status Proposal for Operator SDK
+---
+title: Ansible-based Operator Status Proposal for Operator SDK
+linkTitle: Ansible Operator Status
+---
 
 > Status: **implemented**
 > 

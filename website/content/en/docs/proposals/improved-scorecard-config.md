@@ -1,4 +1,7 @@
-# Improved Scorecard Config Proposal for Operator SDK
+---
+title: Improved Scorecard Config Proposal for Operator SDK
+linkTitle: Imroved Scorecard Config
+---
 
 Implementation Owner: AlexNPavel
 > Status: **implemented**
