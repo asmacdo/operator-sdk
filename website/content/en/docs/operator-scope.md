@@ -1,5 +1,8 @@
-
-# Operators and CRD scope with Operator SDK
+---
+title: Operators and CRD scope with Operator SDK
+linkTitle: Operator Scope
+weight: 20
+---
 
 - [Namespace-scoped operator usage](#namespace-scoped-operator-usage)
 - [Cluster-scoped operator usage](#cluster-scoped-operator-usage)

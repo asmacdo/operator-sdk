@@ -1,4 +1,8 @@
-# Operator SDK Command Line Interface (CLI) Reference
+---
+title: Operator SDK Command Line Interface (CLI) Reference
+linkTitle: CLI Reference
+weight: 20
+---
 
 ```bash
 Usage:

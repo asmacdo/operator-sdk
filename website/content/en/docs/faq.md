@@ -1,4 +1,8 @@
-# Operator SDK FAQ
+---
+title: Operator SDK FAQ
+linkTitle: FAQ
+weight: 20
+---
 
 ## How can I have separate logic for Create, Update, and Delete events? When reconciling an object can I access its previous state?
 

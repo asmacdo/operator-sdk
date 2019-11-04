@@ -1,4 +1,8 @@
-# Versioning for Operator SDK
+---
+title: Versioning for Operator SDK
+linkTitle: Versioning
+weight: 20
+---
 
 The following is a concise explanation of how Operator SDK versions are determined. The Operator SDK versioning follows [semantic versioning][link-semver] standards.
 
