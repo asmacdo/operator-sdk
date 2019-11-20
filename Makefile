@@ -118,8 +118,11 @@ test: test-unit ## Run the tests
 test-linter:  ## Run golangci-lint for the project
 	./hack/go-linter.sh
 
-test-markdown test/markdown:
-	./hack/ci/marker
+test-links:
+	# TODO NOT GREAT 
+	cd website; npm install postcss-cli
+	cd website; hugo
+	cd website; liche -d public -r -c 50 public
 
 test-sanity test/sanity: tidy build/operator-sdk
 	./hack/tests/sanity-check.sh

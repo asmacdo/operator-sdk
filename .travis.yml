@@ -128,7 +128,7 @@ jobs:
     # Run the unit, sanity, markdown and linter tests
     - stage: test
       name: Unit, Sanity, Markdown and Linter Tests
-      script: make test-sanity test-unit test-markdown test-linter
+      script: make test-sanity test-unit test-links test-linter
       after_success: echo 'Tests Passed'
       after_failure: echo 'Failure in unit, sanity, markdown or linter test'
 
