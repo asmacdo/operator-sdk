@@ -21,7 +21,7 @@ require (
 	github.com/markbates/inflect v1.0.4
 	github.com/martinlindhe/base36 v1.0.0
 	github.com/mattbaird/jsonpatch v0.0.0-20171005235357-81af80346b1a
-	github.com/mattn/go-isatty v0.0.8
+	github.com/mattn/go-isatty v0.0.11
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/mitchellh/mapstructure v1.1.2
 	github.com/operator-framework/api v0.0.0-20200120235816-80fd2f1a09c9
@@ -42,6 +42,8 @@ require (
 	github.com/stretchr/testify v1.4.0
 	github.com/ziutek/mymysql v1.5.4 // indirect
 	go.uber.org/zap v1.10.0
+	golang.org/x/net v0.0.0-20200114155413-6afb5195e5aa // indirect
+	golang.org/x/sys v0.0.0-20200117145432-59e60aa80a0c // indirect
 	golang.org/x/tools v0.0.0-20191018212557-ed542cd5b28a
 	gopkg.in/gorp.v1 v1.7.2 // indirect
 	gopkg.in/yaml.v2 v2.2.4

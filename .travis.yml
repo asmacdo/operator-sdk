@@ -124,16 +124,35 @@ jobs:
       name: Subcommands on Kubernetes
       script: make test-subcommand
 
-    # Run the unit, sanity and markdown tests
+    # Run the unit and sanity tests
     - stage: test
-      name: Unit, Sanity, and Markdown Tests
+      name: Unit and Sanity Tests
       before_install:
         - (cd / && go get github.com/mattn/goveralls)
       script:
-        - make test-sanity test-unit test-markdown
+        - make test-sanity test-unit
         - $GOPATH/bin/goveralls -service=travis-ci -coverprofile=coverage.out -repotoken=$COVERALLS_TOKEN
       after_success: echo 'Tests Passed'
-      after_failure: echo 'Failure in unit, sanity and markdown tests'
+      after_failure: echo 'Failure in unit, sanity, and links tests'
+
+    # Make sure hugo builds correctly and the links work
+    - stage: test
+      name: Test docs build and links
+      install:
+        - go get -u github.com/raviqqe/liche
+        - wget "https://github.com/gohugoio/hugo/releases/download/v${HUGO_RELEASE}/hugo_extended_${HUGO_RELEASE}_Linux-64bit.deb"
+        - sudo dpkg -i hugo*.deb
+        - git submodule update --init --recursive
+        - (cd website && npm install postcss-cli)
+      script:
+        - (cd website && hugo)
+        - (cd website && tree public)
+        - (cd website && liche -d public -r -c 50 public)
+      after_success: echo 'Docs build correctly and have no broken links.'
+      after_failure: echo 'Docs contain broken links or did not build.'
+      env:
+        - HUGO_RELEASE=0.62.2
+
 
     # Build and deploy amd64 ansible-operator docker image
     - <<: *deploy
