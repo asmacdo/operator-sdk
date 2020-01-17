@@ -180,12 +180,12 @@ image-push-scorecard-proxy:
 ##@ Tests
 
 # Static tests.
-.PHONY: test test-markdown test-sanity test-unit
+.PHONY: test test-links test-sanity test-unit
 
 test: test-unit ## Run the tests
 
-test-markdown test/markdown:
-	./hack/ci/marker
+test-links test/links:
+	./hack/ci/links.sh
 
 test-sanity test/sanity: tidy build/operator-sdk lint
 	./hack/tests/sanity-check.sh
