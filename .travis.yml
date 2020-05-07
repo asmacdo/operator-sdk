@@ -121,8 +121,8 @@ jobs:
         - echo $(pwd)
         - echo $(TRAVIS_BUILD_DIR)
         - docker run --rm -i \
-          -v $TRAVIS_BUILD_DIR:/src \
-          -v $TRAVIS_BUILD_DIR/_public:/target \
+          -v ${TRAVIS_BUILD_DIR}:/src \
+          -v ${TRAVIS_BUILD_DIR}/_public:/target \
           klakegg/hugo:0.69.2-ext-ubuntu \
           -s website
         - go get -u github.com/raviqqe/liche
@@ -132,151 +132,151 @@ jobs:
     ## Operator test stage jobs ##
 
     # Build and test ansible and test ansible using molecule
-    - stage: test
-      <<: *test
-      name: Ansible on Kubernetes
-      before_script:
-        - pip3 install --upgrade setuptools pip
-        - pip install --user ansible
-      script:
-        - make test-e2e-ansible
-        - make test-e2e-ansible-molecule
-
-    # Test subcommands
-    - <<: *test
-      name: Subcommands on Kubernetes
-      script: make test-subcommand
-
-    # Build and test go
-    - <<: *test
-      name: Go on Kubernetes
-      before_script:
-      - (cd / && go get github.com/mattn/goveralls)
-      script:
-      - make test-unit
-      - $GOPATH/bin/goveralls -service=travis-ci -coverprofile=coverage.out -repotoken=$COVERALLS_TOKEN
-      - make test-e2e-go
-      - make test-integration
-
-    # Build and test helm
-    - <<: *test
-      name: Helm on Kubernetes
-      script: make test-e2e-helm
-
-    ## Image deploy/push stage jobs ##
-
-    # Build and deploy arm64 ansible-operator docker image
-    - stage: deploy
-      <<: *deploy
-      name: Docker image for ansible-operator (arm64)
-      arch: arm64
-      script:
-        - make image-build-ansible
-        - make image-push-ansible
-
-    # Build and deploy amd64 ansible-operator docker image
-    - <<: *deploy
-      name: Docker image for ansible-operator (amd64)
-      arch: amd64
-      script:
-        - make image-build-ansible
-        - make image-push-ansible
-
-    # Build and deploy ppc64le ansible-operator docker image
-    - <<: *deploy
-      name: Docker image for ansible-operator (ppc64le)
-      arch: ppc64le
-      script:
-        - make image-build-ansible
-        - make image-push-ansible
-
-    # Build and deploy s390x ansible-operator docker image
-    - <<: *deploy
-      name: Docker image for ansible-operator (s390x)
-      arch: s390x
-      script:
-        - make image-build-ansible
-        - make image-push-ansible
-
-    # Build and deploy arm64 helm-operator docker image
-    - <<: *deploy
-      name: Docker image for helm-operator (arm64)
-      arch: arm64
-      script:
-        - make image-build-helm
-        - make image-push-helm
-
-    # Build and deploy amd64 helm-operator docker image
-    - <<: *deploy
-      name: Docker image for helm-operator (amd64)
-      arch: amd64
-      script:
-        - make image-build-helm
-        - make image-push-helm
-
-    # Build and deploy ppc64le helm-operator docker image
-    - <<: *deploy
-      name: Docker image for helm-operator (ppc64le)
-      arch: ppc64le
-      script:
-        - make image-build-helm
-        - make image-push-helm
-
-    # Build and deploy s390x helm-operator docker image
-    - <<: *deploy
-      name: Docker image for helm-operator (s390x)
-      arch: s390x
-      script:
-        - make image-build-helm
-        - make image-push-helm
-
-    # Build and deploy arm64 scorecard-proxy docker image
-    - <<: *deploy
-      name: Docker image for scorecard-proxy (arm64)
-      arch: arm64
-      script:
-        - make image-build-scorecard-proxy
-        - make image-push-scorecard-proxy
-
-    # Build and deploy amd64 scorecard-proxy docker image
-    - <<: *deploy
-      name: Docker image for scorecard-proxy (amd64)
-      arch: amd64
-      script:
-        - make image-build-scorecard-proxy
-        - make image-push-scorecard-proxy
-
-    # Build and deploy ppc64le scorecard-proxy docker image
-    - <<: *deploy
-      name: Docker image for scorecard-proxy (ppc64le)
-      arch: ppc64le
-      script:
-        - make image-build-scorecard-proxy
-        - make image-push-scorecard-proxy
-
-    # Build and deploy s390x scorecard-proxy docker image
-    - <<: *deploy
-      name: Docker image for scorecard-proxy (s390x)
-      arch: s390x
-      script:
-        - make image-build-scorecard-proxy
-        - make image-push-scorecard-proxy
-
-    # Build and deploy ansible multi-arch manifest list
-    - stage: deploy-manifest-multiarch
-      <<: *manifest-deploy
-      name: Manifest list for ansible-operator
-      script:
-        - make image-push-ansible-multiarch
-
-    # Build and deploy helm multi-arch manifest list
-    - <<: *manifest-deploy
-      name: Manifest list for helm-operator
-      script:
-        - make image-push-helm-multiarch
-
-    # Build and deploy scorecard-proxy multi-arch manifest list
-    - <<: *manifest-deploy
-      name: Manifest list for scorecard-proxy
-      script:
-        - make image-push-scorecard-proxy-multiarch
+    # - stage: test
+    #   <<: *test
+    #   name: Ansible on Kubernetes
+    #   before_script:
+    #     - pip3 install --upgrade setuptools pip
+    #     - pip install --user ansible
+    #   script:
+    #     - make test-e2e-ansible
+    #     - make test-e2e-ansible-molecule
+    #
+    # # Test subcommands
+    # - <<: *test
+    #   name: Subcommands on Kubernetes
+    #   script: make test-subcommand
+    #
+    # # Build and test go
+    # - <<: *test
+    #   name: Go on Kubernetes
+    #   before_script:
+    #   - (cd / && go get github.com/mattn/goveralls)
+    #   script:
+    #   - make test-unit
+    #   - $GOPATH/bin/goveralls -service=travis-ci -coverprofile=coverage.out -repotoken=$COVERALLS_TOKEN
+    #   - make test-e2e-go
+    #   - make test-integration
+    #
+    # # Build and test helm
+    # - <<: *test
+    #   name: Helm on Kubernetes
+    #   script: make test-e2e-helm
+    #
+    # ## Image deploy/push stage jobs ##
+    #
+    # # Build and deploy arm64 ansible-operator docker image
+    # - stage: deploy
+    #   <<: *deploy
+    #   name: Docker image for ansible-operator (arm64)
+    #   arch: arm64
+    #   script:
+    #     - make image-build-ansible
+    #     - make image-push-ansible
+    #
+    # # Build and deploy amd64 ansible-operator docker image
+    # - <<: *deploy
+    #   name: Docker image for ansible-operator (amd64)
+    #   arch: amd64
+    #   script:
+    #     - make image-build-ansible
+    #     - make image-push-ansible
+    #
+    # # Build and deploy ppc64le ansible-operator docker image
+    # - <<: *deploy
+    #   name: Docker image for ansible-operator (ppc64le)
+    #   arch: ppc64le
+    #   script:
+    #     - make image-build-ansible
+    #     - make image-push-ansible
+    #
+    # # Build and deploy s390x ansible-operator docker image
+    # - <<: *deploy
+    #   name: Docker image for ansible-operator (s390x)
+    #   arch: s390x
+    #   script:
+    #     - make image-build-ansible
+    #     - make image-push-ansible
+    #
+    # # Build and deploy arm64 helm-operator docker image
+    # - <<: *deploy
+    #   name: Docker image for helm-operator (arm64)
+    #   arch: arm64
+    #   script:
+    #     - make image-build-helm
+    #     - make image-push-helm
+    #
+    # # Build and deploy amd64 helm-operator docker image
+    # - <<: *deploy
+    #   name: Docker image for helm-operator (amd64)
+    #   arch: amd64
+    #   script:
+    #     - make image-build-helm
+    #     - make image-push-helm
+    #
+    # # Build and deploy ppc64le helm-operator docker image
+    # - <<: *deploy
+    #   name: Docker image for helm-operator (ppc64le)
+    #   arch: ppc64le
+    #   script:
+    #     - make image-build-helm
+    #     - make image-push-helm
+    #
+    # # Build and deploy s390x helm-operator docker image
+    # - <<: *deploy
+    #   name: Docker image for helm-operator (s390x)
+    #   arch: s390x
+    #   script:
+    #     - make image-build-helm
+    #     - make image-push-helm
+    #
+    # # Build and deploy arm64 scorecard-proxy docker image
+    # - <<: *deploy
+    #   name: Docker image for scorecard-proxy (arm64)
+    #   arch: arm64
+    #   script:
+    #     - make image-build-scorecard-proxy
+    #     - make image-push-scorecard-proxy
+    #
+    # # Build and deploy amd64 scorecard-proxy docker image
+    # - <<: *deploy
+    #   name: Docker image for scorecard-proxy (amd64)
+    #   arch: amd64
+    #   script:
+    #     - make image-build-scorecard-proxy
+    #     - make image-push-scorecard-proxy
+    #
+    # # Build and deploy ppc64le scorecard-proxy docker image
+    # - <<: *deploy
+    #   name: Docker image for scorecard-proxy (ppc64le)
+    #   arch: ppc64le
+    #   script:
+    #     - make image-build-scorecard-proxy
+    #     - make image-push-scorecard-proxy
+    #
+    # # Build and deploy s390x scorecard-proxy docker image
+    # - <<: *deploy
+    #   name: Docker image for scorecard-proxy (s390x)
+    #   arch: s390x
+    #   script:
+    #     - make image-build-scorecard-proxy
+    #     - make image-push-scorecard-proxy
+    #
+    # # Build and deploy ansible multi-arch manifest list
+    # - stage: deploy-manifest-multiarch
+    #   <<: *manifest-deploy
+    #   name: Manifest list for ansible-operator
+    #   script:
+    #     - make image-push-ansible-multiarch
+    #
+    # # Build and deploy helm multi-arch manifest list
+    # - <<: *manifest-deploy
+    #   name: Manifest list for helm-operator
+    #   script:
+    #     - make image-push-helm-multiarch
+    #
+    # # Build and deploy scorecard-proxy multi-arch manifest list
+    # - <<: *manifest-deploy
+    #   name: Manifest list for scorecard-proxy
+    #   script:
+    #     - make image-push-scorecard-proxy-multiarch
