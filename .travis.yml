@@ -118,12 +118,13 @@ jobs:
     - name: Markdown Tests
       before_script:
         - docker run --rm -i \
-          -v $(pwd)/website:/src \
-          -v $(pwd)/website/public:/target \
+          -v $TRAVIS_BUILD_DIR:/src \
+          -v $TRAVIS_BUILD_DIR/_public:/target \
           klakegg/hugo:0.69.2-ext-ubuntu
+          -s website
         - go get -u github.com/raviqqe/liche
       script:
-        - liche -d public -r -c 50 public
+        - liche -d $TRAVIS_BUILD_DIR/_public -r -c 50 $TRAVS_BUILD_DIR/_public
 
     ## Operator test stage jobs ##
 
