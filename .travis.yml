@@ -116,8 +116,15 @@ jobs:
     #
     # Run the markdown link checker
     - name: Markdown Tests
+      before_script:
+        - docker run --rm -i \
+          -v $(pwd)/website:/src \
+          -v $(pwd)/website/public:/target \
+          klakegg/hugo:0.69.2-ext-ubuntu
+        - go get -u github.com/raviqqe/liche
       script:
-        - make test-links
+        - liche -d public -r -c 50 public
+
     ## Operator test stage jobs ##
 
     # Build and test ansible and test ansible using molecule
