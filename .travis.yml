@@ -103,17 +103,16 @@ jobs:
     ## Project check stage jobs ##
 
     # Run the sanity tests
-    - stage: check
-      name: Sanity Tests
-      script:
-        - make test-sanity
+    # - stage: check
+    #   name: Sanity Tests
+    #   script:
+    #     - make test-sanity
     #
     # # Run the markdown link checker
     # - name: Markdown Tests
     #   script:
     #     - make test-markdown
     #
-  allow_failures:
     # Run the markdown link checker
     - name: Markdown Tests
       before_script:
@@ -124,6 +123,8 @@ jobs:
         - go get -u github.com/raviqqe/liche
       script:
         - liche -d $TRAVIS_BUILD_DIR/_public -r -c 2 $TRAVIS_BUILD_DIR/_public
+  allow_failures:
+    - name: Markdown Tests
 
     ## Operator test stage jobs ##
 
