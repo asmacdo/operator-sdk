@@ -104,16 +104,20 @@ jobs:
     ## Project check stage jobs ##
 
     # Run the sanity tests
-    - stage: check
-      name: Sanity Tests
-      script:
-        - make test-sanity
-
+    # - stage: check
+    #   name: Sanity Tests
+    #   script:
+    #     - make test-sanity
+    #
+    # # Run the markdown link checker
+    # - name: Markdown Tests
+    #   script:
+    #     - make test-markdown
+    #
     # Run the markdown link checker
     - name: Markdown Tests
       script:
-        - make test-markdown
-
+        - make test-links
     ## Operator test stage jobs ##
 
     # Build and test ansible and test ansible using molecule
