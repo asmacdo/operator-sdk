@@ -120,11 +120,7 @@ jobs:
         - echo $TRAVIS_BUILD_DIR
         - echo $(pwd)
         - echo $(TRAVIS_BUILD_DIR)
-        - docker run --rm -i \
-          -v "$TRAVIS_BUILD_DIR:/src" \
-          -v "$TRAVIS_BUILD_DIR}/_public:/target" \
-          klakegg/hugo:0.69.2-ext-ubuntu \
-          -s website
+        - docker run --rm -i -v "$TRAVIS_BUILD_DIR:/src" -v "$TRAVIS_BUILD_DIR/_public:/target" klakegg/hugo:0.69.2-ext-ubuntu -s website
         - go get -u github.com/raviqqe/liche
       script:
         - liche -d $TRAVIS_BUILD_DIR/_public -r -c 50 $TRAVIS_BUILD_DIR/_public
