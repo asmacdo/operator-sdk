@@ -11,12 +11,12 @@ orchestration tool set with an enourmous community. Kubernetes modules (link to 
 gives Ansible [Roles][TODO(asmacdo)] and [Playbooks](TODO(asmacdo)) the
 ability to interact with Kubernetes API.
 
-## High Level Example
+### High Level Example
 
 Administrators interact with a typical operator by creating a resource.
 
-(simplified)
 ```yaml
+# Application-specific Kubernetes Resource
 apiVersion: "my.app.domain/v1alpha1"
 kind: "MyApp"
 metadata:
@@ -28,16 +28,17 @@ spec:
 The `MyApp` Resource is a [Custom Resource][cr-def] based on the [Custom
 Resource Definition][crd-def] provided by an operator. 
 Creating this `MyApp` [Kubernetes resource](TODO(asmacdo)) will alert the operator to
-spin up MyApp with the option `size: 4`. Every time a `MyApp` resource
+deploy MyApp with the option `size: 4`. Every time a `MyApp` resource
 is created, updated, or deleted, (and periodically) the operator
-[reconciles][reconcile] the desired state of with the actual state of
+[reconciles][reconcile] the desired state with the actual state of
 the cluster.
 
 When an Ansible-based operator reconciles, it executes a Role or
-Playbook. Kubernetes resources are mapped to the roles or playbooks to
-execute via a [watches file][watches-file].
+Playbook. The Kubernetes resources to monitor are mapped to roles or playbooks 
+via a [watches file][watches-file].
 
 ```yaml
+# watches.yaml (simplified)
 ---
 - version: v1alpha1
   group: my.site.domain
@@ -45,10 +46,10 @@ execute via a [watches file][watches-file].
   role: my_app
 ```
 
-In this case, when the `MyApp` CR is created the operator executes the `my_app` role:
+In this case, the `MyApp` CR is created and the operator executes the `my_app` role:
 
-`roles/my_app/tasks/main.yml` (simplified)
 ```yaml
+`roles/my_app/tasks/main.yml` (simplified)
 ---                                                                                                                                                                                    
 - name: Start MyApp
   community.kubernetes.k8s:                                                                                                                                                            
