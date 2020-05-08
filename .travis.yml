@@ -115,13 +115,9 @@ jobs:
 
     # Run the markdown link checker
     - name: Check Website links
-      before_script:
-        - gem install html-proofer
-        - docker run --rm -i -v "$TRAVIS_BUILD_DIR:/src" -v "$TRAVIS_BUILD_DIR/_public:/target" klakegg/hugo:0.62.2-ext-ubuntu -s website
       script:
-        - htmlproofer _public --empty-alt-ignore --http-status-ignore 429
-
-    ## Operator test stage jobs ##
+        - docker run --rm -i -v "$TRAVIS_BUILD_DIR:/src" -v "$TRAVIS_BUILD_DIR/_public:/target" klakegg/hugo:0.62.2-ext-ubuntu -s website
+        - docker run -v "$TRAVIS_BUILD_DIR/public:/target" mtlynch/htmlproofer /target --empty-alt-ignore --http-status-ignore 429
 
     # Build and test ansible and test ansible using molecule
     - stage: test
