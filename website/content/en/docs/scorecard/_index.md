@@ -3,6 +3,8 @@ title: Scorecard
 weight: 25
 ---
 
+TODO(asmacdo) What is scorecard?
+
 # operator-sdk scorecard
 
 ## Overview

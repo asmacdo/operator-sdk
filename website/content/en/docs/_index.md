@@ -17,6 +17,18 @@ The Operator SDK is a framework that uses the [controller-runtime][controller_ru
   - High level APIs and abstractions to write the operational logic more intuitively
   - Tools for scaffolding and code generation to bootstrap a new project fast
   - Extensions to cover common operator use cases
+  - TODO(asmacdo) quick summary of scorecard
+
+## Operator Pattern
+
+Projects that use the Operator-SDK implement the [Operator Pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/)
+which typically create a [Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
+and a [Custom Controller](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#custom-controllers)
+that extend the Kubernetes API with application-specific knowledge.
+
+The Operator Pattern allows application developers to implement custom
+behavior and options, and administrators to manage their deployments
+however they manage Kubernetes resources.
 
 ## Workflow
 
