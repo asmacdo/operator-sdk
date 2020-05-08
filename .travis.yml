@@ -100,6 +100,7 @@ stages:
 
 jobs:
   include:
+
     ## Project check stage jobs ##
 
     # Run the sanity tests
@@ -116,8 +117,9 @@ jobs:
     # Run the markdown link checker
     - name: Check Website links
       script:
-        - docker run --rm -i -v "$TRAVIS_BUILD_DIR:/src" -v "$TRAVIS_BUILD_DIR/_public:/target" klakegg/hugo:0.62.2-ext-ubuntu -s website
-        - docker run -v "$TRAVIS_BUILD_DIR/public:/target" mtlynch/htmlproofer /target --empty-alt-ignore --http-status-ignore 429
+        - make test-links
+
+    ## Operator test stage jobs ##
 
     # Build and test ansible and test ansible using molecule
     - stage: test
