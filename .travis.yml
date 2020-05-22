@@ -99,6 +99,8 @@ stages:
     if: type != pull_request AND ( tag IS present OR branch = master OR commit_message =~ /\[travis deploy\]/ )
 
 jobs:
+  allow_failures:
+    - name: Doc Checks
   include:
 
     ## Project check stage jobs ##
