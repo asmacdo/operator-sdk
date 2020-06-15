@@ -23,6 +23,7 @@ import (
 	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/olm"
 	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/version"
 	"github.com/operator-framework/operator-sdk/internal/flags"
+	"github.com/operator-framework/operator-sdk/internal/plugins/ansible"
 	"github.com/operator-framework/operator-sdk/internal/plugins/golang"
 	"github.com/operator-framework/operator-sdk/internal/util/projutil"
 
@@ -63,6 +64,7 @@ func GetPluginsCLIAndRoot() (cli.CLI, *cobra.Command) {
 		cli.WithCommandName("operator-sdk"),
 		cli.WithPlugins(
 			&golang.Plugin{},
+			&ansible.Plugin{},
 		),
 		cli.WithDefaultPlugins(&golang.Plugin{}),
 		cli.WithExtraCommands(commands...),
