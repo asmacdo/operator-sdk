@@ -15,6 +15,7 @@
 package ansible
 
 import (
+	"github.com/fatih/color" // TODO(asmacdo) remove
 	"github.com/operator-framework/operator-sdk/internal/plugins"
 
 	"sigs.k8s.io/kubebuilder/pkg/model/config"
@@ -39,7 +40,7 @@ var (
 
 var (
 	_ plugin.Base = Plugin{}
-	// _ plugin.InitPluginGetter          = Plugin{}
+	// _ plugin.InitPluginGetter = Plugin{}
 	// _ plugin.CreateAPIPluginGetter     = Plugin{}
 	// _ plugin.CreateWebhookPluginGetter = Plugin{}
 )
@@ -51,13 +52,18 @@ func (Plugin) Name() string { return pluginName }
 func (Plugin) Version() plugin.Version            { return pluginVersion }
 func (Plugin) SupportedProjectVersions() []string { return supportedProjectVersions }
 
-//
+// TODO(asmacdo) deleteme
+func (Plugin) WhatsGoingOn() {
+	color.Blue("internal/plugins/ansible/plugin.go")
+	color.Magenta("    - Plugin struct contains the correct attrs")
+}
+
 // func (p Plugin) GetInitPlugin() plugin.Init {
 // 	return &initPlugin{
 // 		Init: (kbgov2.Plugin{}).GetInitPlugin(),
 // 	}
 // }
-//
+
 // func (p Plugin) GetCreateAPIPlugin() plugin.CreateAPI {
 // 	return &createAPIPlugin{
 // 		CreateAPI: (kbgov2.Plugin{}).GetCreateAPIPlugin(),

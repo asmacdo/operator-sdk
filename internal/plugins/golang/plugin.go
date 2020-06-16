@@ -34,6 +34,8 @@ var (
 	pluginConfigKey = plugin.Key(pluginName, pluginVersion.String())
 )
 
+// Doing this causes the compiler to make sure that Plugin implements kubebuilder's plugin.Base, plugin.InitPluginGetter, etc.
+// So, to start with, ansible plugin needs to implement plugin.Base, then Init, other 2 might be out of scope for initial PR.
 var (
 	_ plugin.Base                      = Plugin{}
 	_ plugin.InitPluginGetter          = Plugin{}

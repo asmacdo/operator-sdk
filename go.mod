@@ -5,6 +5,7 @@ go 1.13
 require (
 	github.com/blang/semver v3.5.1+incompatible
 	github.com/coreos/prometheus-operator v0.38.1-0.20200424145508-7e176fda06cc
+	github.com/fatih/color v1.7.0
 	github.com/fatih/structtag v1.1.0
 	github.com/go-logr/logr v0.1.0
 	github.com/go-logr/zapr v0.1.1

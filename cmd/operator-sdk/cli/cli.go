@@ -15,6 +15,7 @@
 package cli
 
 import (
+	"github.com/fatih/color" // TODO(asmacdo) remove
 	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/alpha"
 	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/build"
 	"github.com/operator-framework/operator-sdk/cmd/operator-sdk/bundle"
@@ -60,6 +61,10 @@ func Run() error {
 // This CLI can run kubebuilder commands and certain SDK specific commands that are aligned for
 // the kubebuilder project layout
 func GetPluginsCLIAndRoot() (cli.CLI, *cobra.Command) {
+	color.Blue("cli/cli.go")
+	color.Magenta("    - Initializing the CLI")
+	color.Magenta("        - include Kubebuilder plugins")
+	// TODO(asmacdo) What does WithDefaultPlugins do?
 	c, err := cli.New(
 		cli.WithCommandName("operator-sdk"),
 		cli.WithPlugins(
