@@ -159,8 +159,8 @@ jobs:
       name: Docker images for arm64
       arch: arm64
       script:
-        - make image-build-ansible image-build-helm image-build-scorecard-test image-build-scorecard-test-kuttl
-        - make image-push-ansible image-push-helm image-push-scorecard-test image-push-scorecard-test-kuttl
+        - make image-build-ansible image-build-helm image-build-scorecard-test image-build-scorecard-test-kuttl image-build-sdk
+        - make image-push-ansible image-push-helm image-push-scorecard-test image-push-scorecard-test-kuttl image-push-sdk
 
     # Build and deploy amd64 docker images
     - <<: *deploy
@@ -175,16 +175,16 @@ jobs:
       name: Docker images for ppc64le
       arch: ppc64le
       script:
-        - make image-build-ansible image-build-helm image-build-scorecard-test image-build-scorecard-test-kuttl
-        - make image-push-ansible image-push-helm image-push-scorecard-test image-push-scorecard-test-kuttl
+        - make image-build-ansible image-build-helm image-build-scorecard-test image-build-scorecard-test-kuttl image-build-sdk
+        - make image-push-ansible image-push-helm image-push-scorecard-test image-push-scorecard-test-kuttl image-push-sdk
 
     # Build and deploy s390x docker images
     - <<: *deploy
       name: Docker images for s390x
       arch: s390x
       script:
-        - make image-build-ansible image-build-helm image-build-scorecard-test
-        - make image-push-ansible image-push-helm image-push-scorecard-test
+        - make image-build-ansible image-build-helm image-build-scorecard-test image-build-sdk
+        - make image-push-ansible image-push-helm image-push-scorecard-test image-push-sdk
 
     # Build and deploy ansible multi-arch manifest list
     - stage: deploy-manifest-multiarch
