@@ -227,7 +227,7 @@ image-build-sdk: build/operator-sdk-dev-linux-gnu
 	./hack/image/build-sdk-image.sh $(OPERATOR_SDK_BASE_IMAGE):dev
 
 image-push-sdk:
-	./hack/image/push-image-tags.sh $(OPERATOR_SDK_BASE_IMAGE):dev $(OPERATOR_SDK_IMAGE)
+	./hack/image/push-image-tags.sh $(OPERATOR_SDK_BASE_IMAGE):dev $(OPERATOR_SDK_IMAGE)-$(shell go env GOARCH)
 
 image-push-sdk-multiarch:
 	./hack/image/push-manifest-list.sh $(OPERATOR_SDK_IMAGE) ${OPERATOR_SDK_ARCHES}
