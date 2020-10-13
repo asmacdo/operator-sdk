@@ -1,0 +1,12 @@
+<section lang="en" id="announcement" style="background-color:{{ .Site.Params.announcement.bg }}">
+  <aside>
+    <div class="content announcement main-section" data-nosnippet>
+
+      <h4 class="announcement">
+          {{ .Site.Params.announcement.title | markdownify }}
+      </h4>
+      <p class="announcement">{{ .Site.Params.announcement.message | markdownify }}</p>
+
+    </div>
+  </aside>
+</section>

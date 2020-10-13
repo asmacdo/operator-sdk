@@ -34,6 +34,11 @@ pygmentsStyle = "tango"
 # Configure how URLs look like per section.
 # [permalinks]
 # blog = "/:section/:year/:month/:day/:slug/"
+[params.announcement]
+title = "Black lives matter."
+message = "We stand in solidarity with the Black community.<br/>Racism is unacceptable.<br/> It conflicts with the [core values of the Kubernetes project](https://git.k8s.io/community/values.md) and our community does not tolerate it."
+# bg = "#000000" #choose a dark color – text is white
+
 
 ## Configuration for Goldmark markdown parser: https://github.com/yuin/goldmark
 [markup]
