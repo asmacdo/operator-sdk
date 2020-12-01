@@ -50,6 +50,8 @@ const (
 	OperatorTypeAnsible OperatorType = "ansible"
 	// OperatorTypeHelm - helm type of operator.
 	OperatorTypeHelm OperatorType = "helm"
+	// OperatorTypePython - python type of operator.
+	OperatorTypePython OperatorType = "python"
 	// OperatorTypeUnknown - unknown type of operator.
 	OperatorTypeUnknown OperatorType = "unknown"
 )
@@ -102,6 +104,8 @@ func PluginKeyToOperatorType(pluginKey string) OperatorType {
 		return OperatorTypeHelm
 	case strings.HasPrefix(pluginKey, "ansible"):
 		return OperatorTypeAnsible
+	case strings.HasPrefix(pluginKey, "python"):
+		return OperatorTypePython
 	}
 	return OperatorTypeUnknown
 }

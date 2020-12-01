@@ -23,7 +23,7 @@ import (
 	"sigs.k8s.io/kubebuilder/v2/pkg/plugin/scaffold"
 
 	"github.com/operator-framework/operator-sdk/internal/kubebuilder/machinery"
-	// "github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates"
+	"github.com/operator-framework/operator-sdk/internal/plugins/python/v1/scaffolds/internal/templates"
 	// "github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/config/kdefault"
 	// "github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/config/manager"
 	// "github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/config/prometheus"
@@ -34,7 +34,7 @@ import (
 	// "github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/molecule/mkind"
 	// "github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/playbooks"
 	// "github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/roles"
-	// "github.com/operator-framework/operator-sdk/internal/version"
+	"github.com/operator-framework/operator-sdk/internal/version"
 )
 
 const (
@@ -44,15 +44,16 @@ const (
 	imageName = "controller:latest"
 )
 
-// TODO(asmacdo) WAIT UNTILL NEEDED. This will be used in the scaffolding.
 // pythonOperatorVersion is set to the version of python-operator at compile-time.
-// var pythonOperatorVersion = version.ImageVersion
+// TODO(asmacdo) What is this version WHYVERS?
+var pythonOperatorVersion = version.ImageVersion
 
 var _ scaffold.Scaffolder = &initScaffolder{}
 
 type initScaffolder struct {
-	config        *config.Config
-	apiScaffolder scaffold.Scaffolder
+	config *config.Config
+	// TODO(asmacdo) ONESHOT? Not doing createAPI for python inits.
+	// apiScaffolder scaffold.Scaffolder
 }
 
 // NewInitScaffolder returns a new Scaffolder for project initialization operations
@@ -95,11 +96,11 @@ func (s *initScaffolder) scaffold() error {
 	return machinery.NewScaffold().Execute(
 		s.newUniverse(),
 		// &templates.Dockerfile{AnsibleOperatorVersion: ansibleOperatorVersion},
-		// &templates.Makefile{
-		// 	Image:                  imageName,
-		// 	KustomizeVersion:       kustomizeVersion,
-		// 	AnsibleOperatorVersion: ansibleOperatorVersion,
-		// },
+		&templates.Makefile{
+			Image:                 imageName,
+			KustomizeVersion:      kustomizeVersion,
+			PythonOperatorVersion: pythonOperatorVersion,
+		},
 		// &templates.GitIgnore{},
 		// &templates.RequirementsYml{},
 		// &templates.Watches{},

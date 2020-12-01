@@ -25,7 +25,7 @@ const pluginName = "python" + plugins.DefaultNameQualifier
 
 var (
 	supportedProjectVersions = []string{config.Version3Alpha}
-	pluginVersion            = plugin.Version{Number: 1}
+	pluginVersion            = plugin.Version{Number: 3}
 	// TODO(asmacdo) Set version number
 	// pluginVersion = plugin.Version{Number: 0}
 	pluginKey = plugin.KeyFor(Plugin{})
