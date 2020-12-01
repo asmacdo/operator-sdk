@@ -27,6 +27,7 @@ import (
 	ansiblev1 "github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1"
 	golangv2 "github.com/operator-framework/operator-sdk/internal/plugins/golang/v2"
 	helmv1 "github.com/operator-framework/operator-sdk/internal/plugins/helm/v1"
+	pythonv1 "github.com/operator-framework/operator-sdk/internal/plugins/python/v1"
 	"github.com/operator-framework/operator-sdk/internal/util/projutil"
 
 	log "github.com/sirupsen/logrus"
@@ -61,6 +62,7 @@ func GetPluginsCLIAndRoot() (cli.CLI, *cobra.Command) {
 			&golangv2.Plugin{},
 			&helmv1.Plugin{},
 			&ansiblev1.Plugin{},
+			&pythonv1.Plugin{},
 		),
 		cli.WithDefaultPlugins(
 			&golangv2.Plugin{},
