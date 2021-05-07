@@ -135,17 +135,18 @@ git push -f upstream v1.3.x
 
 We will use the `v1.3.1` release version in this example.
 
-#### 0. Lock down release branches
+#### 0. Lock down release branches on GitHub
 
-1. Lock down the `v1.3.x` branch to prevent further commits before the release completes:
-  1. Go to `Settings -> Branches` in the SDK repo.
-  1. Under `Branch protection rules`, click `Edit` on the `v.*` branch rule.
-  1. In section `Protect matching branches` of the `Rule settings` box, increase the number of required approving reviewers to 6.
+Lock down the `v1.3.x` branch to prevent further merges/commits.
 
-#### 1. Create a release Pull Request
+To do this, edit the `Branch protection rules`: https://github.com/operator-framework/operator-sdk/settings/branches
 
+    1. click `Edit` on the `v.*` branch rule.
+    1. In section `Protect matching branches` of the `Rule settings` box, set "Required approving reviewers" to `6`.
 
-1. Create a new branch from the release branch, which should already exist for the desired minor version.
+#### 1. Branch
+
+Create a new branch from the release branch (v1.3.x in this example). This branch should already exist prior to cutting a patch release.
 
 ```sh
 export RELEASE_VERSION=v1.3.1
@@ -154,55 +155,65 @@ git pull
 git checkout -b release-$RELEASE_VERSION
 ```
 
-1. Update the top-level [Makefile] variable `IMAGE_VERSION` to the upcoming release tag `v1.3.1`.  This variable ensures sample projects have been tagged
-correctly prior to the release commit.
 
-  ```sh
-  sed -i -E 's/(IMAGE_VERSION = ).+/\1v1\.3\.1/g' Makefile
-  ```
+#### 2. Prepare the release commit
 
-1. Run the pre-release `make` target:
-
-```sh
+```sh 
+# Update the IMAGE_VERSION in the Makefile 
+sed -i -E 's/(IMAGE_VERSION = ).+/\1v1\.3\.1/g' Makefile
+#  Run the pre-release `make` target:
 make prerelease
-```
-
-The following changes should be present:
-
-- `changelog/generated/v1.3.0.md`: commit changes (created by changelog generation).
-- `changelog/fragments/*`: commit deleted fragment files (deleted by changelog generation).
-
-1. Regenerate testdata. 
-
-```sh
+# Regenerate testdata (samples). 
+# NOTE: The sanity test will fail but scaffolding should complete.
 make test-sanity
 ```
-Commit these changes and push:
+
+All of the following changes should be present (and no others).
+
+1. Modified: `Makefile`: IMAGE_VERSION modified to the upcoming release tag. (This
+   variable ensures sampleprojects have been tagged correctpy priror to
+   the release commit.)
+1. changelog/: 
+  1. Deleted: all fragments
+  1. Added: changelog/generated/v1.3.1.md
+1. docs: 
+  1. Added: `website/content/en/docs/upgrading-sdk-version/v1.3.1.md` (only if there are migration steps)
+  1. Modified: installation docs link update. Is this still broken?TODO(asmacdo)
+1. testdata/: version bumps in the generated samples and tests
+
+Commit these changes and push these changes **to your fork**:
 
 ```sh
 git add --all
-git commit -m "Release $RELEASE_VERSION"
+git commit -sm "Release $RELEASE_VERSION"
 git push -u origin release-$RELEASE_VERSION
 ```
 
-### 2. Create and merge a new PR
+#### 3. Create and merge Pull Request
 
-Create and merge a new PR for the commit created in step 1. Once 2
-approving reviews are given, unlock the branch by changing the number of
-required approving reviewers in the `v.*` branch rule back to 1.  the
-PR.
+1. Create a pull request against the `v1.3.x` branch. 
+2. Once 2 approving review is given, unlock the branch by setting
+"required approving reviewers" to back to 1. (See step 0).
+3. Merge
 
-### 4. Create and push a release tag
+#### 4. Create a release tag
+
+Pull down `v1.3.x` and tag it.
 
 ```sh
+git checkout v1.3.x
+git pull upstream v1.3.x
 make tag
 git push upstream refs/tags/$RELEASE_VERSION
 ```
 
 ### 5. Fast-forward the `latest` branch
 
-If the patch release is on the latest y-stream, you will need to
-fastforward the `latest` git branch. The `latest` branch points to the latest release tag to keep the main website subdomain up-to-date.
+If the patch release is on the latest y-stream (in the example you would
+not ff latest if there was a y-stream for v1.4.x), you will need to
+fast-forward the `latest` git branch. 
+
+(The `latest` branch points to the latest release tag to keep the main website subdomain up-to-date.)
 
 ```sh
 git checkout latest
