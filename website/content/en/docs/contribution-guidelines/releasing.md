@@ -45,7 +45,7 @@ assuming the upstream SDK is the `upstream` remote repo:
   git checkout -b v1.3.x
   git push -u upstream v1.3.x
   ```
-1. Make sure that the list of supported OLM versions stated in the [Overview][overview] section of SDK docs is updated. If a new version of OLM needs to be officially supported, follow the steps in [updating OLM bindata](#updating-olm-bindata) section. 
+1. Make sure that the list of supported OLM versions stated in the [Overview][overview] section of SDK docs is updated. If a new version of OLM needs to be officially supported, follow the steps in [updating OLM bindata](#updating-olm-bindata) section.
 1. Create and merge a commit that updates the top-level [Makefile] variable `IMAGE_VERSION`
 to the upcoming release tag `v1.3.0`. This variable ensures sample projects have been tagged
 correctly prior to the release commit.
@@ -135,23 +135,17 @@ git push -f upstream v1.3.x
 
 We will use the `v1.3.1` release version in this example.
 
-### Before starting
+#### 0. Lock down release branches
 
-1. Create and merge a commit that updates the top-level [Makefile] variable `IMAGE_VERSION`
-to the upcoming release tag `v1.3.1`. This variable ensures sample projects have been tagged
-correctly prior to the release commit.
-  ```sh
-  sed -i -E 's/(IMAGE_VERSION = ).+/\1v1\.3\.1/g' Makefile
-  ```
 1. Lock down the `v1.3.x` branch to prevent further commits before the release completes:
   1. Go to `Settings -> Branches` in the SDK repo.
   1. Under `Branch protection rules`, click `Edit` on the `v.*` branch rule.
   1. In section `Protect matching branches` of the `Rule settings` box, increase the number of required approving reviewers to 6.
 
-### 1. Create and push a release commit
+#### 1. Create a release Pull Request
 
-Create a new branch from the release branch, which should already exist for the desired minor version,
-to push the release commit to:
+
+1. Create a new branch from the release branch, which should already exist for the desired minor version.
 
 ```sh
 export RELEASE_VERSION=v1.3.1
@@ -160,7 +154,14 @@ git pull
 git checkout -b release-$RELEASE_VERSION
 ```
 
-Run the pre-release `make` target:
+1. Update the top-level [Makefile] variable `IMAGE_VERSION` to the upcoming release tag `v1.3.1`.  This variable ensures sample projects have been tagged
+correctly prior to the release commit.
+
+  ```sh
+  sed -i -E 's/(IMAGE_VERSION = ).+/\1v1\.3\.1/g' Makefile
+  ```
+
+1. Run the pre-release `make` target:
 
 ```sh
 make prerelease
@@ -171,6 +172,11 @@ The following changes should be present:
 - `changelog/generated/v1.3.0.md`: commit changes (created by changelog generation).
 - `changelog/fragments/*`: commit deleted fragment files (deleted by changelog generation).
 
+1. Regenerate testdata. 
+
+```sh
+make test-sanity
+```
 Commit these changes and push:
 
 ```sh
@@ -181,12 +187,10 @@ git push -u origin release-$RELEASE_VERSION
 
 ### 2. Create and merge a new PR
 
-Create and merge a new PR for the commit created in step 1. You can force-merge your PR to the locked-down `v1.3.x`
-if you have admin access to the operator-sdk repo, or ask an administrator to do so.
-
-### 3. Unlock the `v1.3.x` branch
-
-Unlock the branch by changing the number of required approving reviewers in the `v.*` branch rule back to 1.
+Create and merge a new PR for the commit created in step 1. Once 2
+approving reviews are given, unlock the branch by changing the number of
+required approving reviewers in the `v.*` branch rule back to 1.  the
+PR.
 
 ### 4. Create and push a release tag
 
@@ -197,8 +201,8 @@ git push upstream refs/tags/$RELEASE_VERSION
 
 ### 5. Fast-forward the `latest` branch
 
-The `latest` branch points to the latest release tag to keep the main website subdomain up-to-date.
-Run the following commands to do so:
+If the patch release is on the latest y-stream, you will need to
+fastforward the `latest` git branch. The `latest` branch points to the latest release tag to keep the main website subdomain up-to-date.
 
 ```sh
 git checkout latest
@@ -272,7 +276,7 @@ GitHub releases live under the [`Releases` tab][release-page] in the operator-sd
 
 Prior to an Operator SDK release, add bindata (if required) for a new OLM version by following these steps:
 
-1. Add the new version to the [`OLM_VERSIONS`][olm_version] variable in the Makefile. 
+1. Add the new version to the [`OLM_VERSIONS`][olm_version] variable in the Makefile.
 2. Remove the *lowest* version from that variable, as `operator-sdk` only supports 3 versions at a time.
 3. Run `make bindata`.
 4. Update the list of supported OLM versions stated in the [`Overview`][overview] section of SDK documentation is updated.
