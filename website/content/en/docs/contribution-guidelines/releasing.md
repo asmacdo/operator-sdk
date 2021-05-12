@@ -180,10 +180,12 @@ All of the following changes should be present (and no others).
 
   1. Deleted: all fragments
   1. Added: changelog/generated/v1.3.1.md
+
 1. docs: 
 
   1. Added: `website/content/en/docs/upgrading-sdk-version/v1.3.1.md` (only if there are migration steps)
   1. Modified: installation docs link update. Is this still broken?TODO(asmacdo)
+
 1. testdata/: version bumps in the generated samples and tests
 
 Commit these changes and push these changes **to your fork**:
