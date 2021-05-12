@@ -141,8 +141,8 @@ Lock down the `v1.3.x` branch to prevent further merges/commits.
 
 To do this, edit the `Branch protection rules`: https://github.com/operator-framework/operator-sdk/settings/branches
 
-    1. click `Edit` on the `v.*` branch rule.
-    1. In section `Protect matching branches` of the `Rule settings` box, set "Required approving reviewers" to `6`.
+1. click `Edit` on the `v.*` branch rule.
+1. In section `Protect matching branches` of the `Rule settings` box, set "Required approving reviewers" to `6`.
 
 #### 1. Branch
 
@@ -157,6 +157,9 @@ git checkout -b release-$RELEASE_VERSION
 
 
 #### 2. Prepare the release commit
+
+Using the version for your release as the IMAGE_VERSION, execute the
+following commands from the root of the project.
 
 ```sh 
 # Update the IMAGE_VERSION in the Makefile 
@@ -174,9 +177,11 @@ All of the following changes should be present (and no others).
    variable ensures sampleprojects have been tagged correctpy priror to
    the release commit.)
 1. changelog/: 
+
   1. Deleted: all fragments
   1. Added: changelog/generated/v1.3.1.md
 1. docs: 
+
   1. Added: `website/content/en/docs/upgrading-sdk-version/v1.3.1.md` (only if there are migration steps)
   1. Modified: installation docs link update. Is this still broken?TODO(asmacdo)
 1. testdata/: version bumps in the generated samples and tests
@@ -192,7 +197,7 @@ git push -u origin release-$RELEASE_VERSION
 #### 3. Create and merge Pull Request
 
 1. Create a pull request against the `v1.3.x` branch. 
-2. Once 2 approving review is given, unlock the branch by setting
+2. Once approving review is given, unlock the branch by setting
 "required approving reviewers" to back to 1. (See step 0).
 3. Merge
 
