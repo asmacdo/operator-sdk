@@ -173,20 +173,14 @@ make test-sanity
 
 All of the following changes should be present (and no others).
 
-1. Modified: `Makefile`: IMAGE_VERSION modified to the upcoming release tag. (This
+1. `Makefile`: IMAGE_VERSION should be modified to the upcoming release tag. (This
    variable ensures sampleprojects have been tagged correctpy priror to
    the release commit.)
-1. changelog/: 
-
-  1. Deleted: all fragments
-  1. Added: changelog/generated/v1.3.1.md
-
-1. docs: 
-
-  1. Added: `website/content/en/docs/upgrading-sdk-version/v1.3.1.md` (only if there are migration steps)
-  1. Modified: installation docs link update. Is this still broken?TODO(asmacdo)
-
-1. testdata/: version bumps in the generated samples and tests
+1. changelog/: all fragments should be deleted and consolidated into the
+   new file `changelog/generated/v1.3.1.md`
+1. docs: If there are migration steps, a new migration doc will be
+   created. The installation docs should also contain a link update.
+1. testdata/: Generated samples and tests should have version bumps
 
 Commit these changes and push these changes **to your fork**:
 
